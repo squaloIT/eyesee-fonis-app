@@ -2,10 +2,21 @@ import { AspectRatio, Box, Center, Flex } from "@chakra-ui/layout";
 import { IconButton } from "@chakra-ui/react";
 import fetcher from "../../api/fetcher";
 import { getIcon } from "../../lib/helpers";
+import useTaskStore from "../../store/taskStore";
 import useVideoStore from "../../store/videoStore";
 
 const MainWrapper = () => {
   const { videoCamera, videoScreen } = useVideoStore();
+  const { kpiID } = useTaskStore();
+
+  const handleEmotionClick = async (emotion: string) => {
+    const res = await fetcher("kpi/emotion/save", {
+      data: {
+        id: kpiID,
+        emotion,
+      },
+    });
+  };
 
   return videoScreen && videoCamera ? (
     <Flex
@@ -38,6 +49,7 @@ const MainWrapper = () => {
             as={getIcon("happiness")}
             width="100px"
             height="100px"
+            onClick={() => handleEmotionClick("happiness")}
             aria-label="Happines"
           />
           <IconButton
@@ -47,6 +59,7 @@ const MainWrapper = () => {
             as={getIcon("sad")}
             width="100px"
             height="100px"
+            onClick={() => handleEmotionClick("sad")}
             aria-label="Sad"
           />
           <IconButton
@@ -56,6 +69,7 @@ const MainWrapper = () => {
             as={getIcon("neutral")}
             width="100px"
             height="100px"
+            onClick={() => handleEmotionClick("neutral")}
             aria-label="Neutral"
           />
           <IconButton
@@ -65,6 +79,7 @@ const MainWrapper = () => {
             as={getIcon("suprised")}
             width="100px"
             height="100px"
+            onClick={() => handleEmotionClick("suprised")}
             aria-label="Suprised"
           />
           <IconButton
@@ -74,6 +89,7 @@ const MainWrapper = () => {
             as={getIcon("love")}
             width="100px"
             height="100px"
+            onClick={() => handleEmotionClick("love")}
             aria-label="Love"
           />
           <IconButton
@@ -83,6 +99,7 @@ const MainWrapper = () => {
             as={getIcon("angry")}
             width="100px"
             height="100px"
+            onClick={() => handleEmotionClick("angry")}
             aria-label="Angry"
           />
         </Flex>

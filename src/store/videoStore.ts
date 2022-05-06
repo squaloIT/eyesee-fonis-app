@@ -2,6 +2,7 @@ import create from "zustand";
 import { devtools } from "zustand/middleware";
 import fetcher from "../api/fetcher";
 import { Video, VideoStoreState } from "../lib/types";
+import useTaskStore from "./taskStore";
 
 const useVideoStore = create(
   devtools<VideoStoreState>((set: any, get: any) => ({
@@ -14,6 +15,7 @@ const useVideoStore = create(
     sliderValue: 0,
     volume: 100,
     getVideosForTesterAndSetState: async (id: Number) => {
+      const { setTaskName, setTesterName, setKPIID } = useTaskStore.getState();
       const { data } = await fetcher(`tester/${id}`);
 
       const videos = data.KPI.video;
@@ -25,6 +27,9 @@ const useVideoStore = create(
       ).url;
 
       set({ videoScreen, videoCamera, isPlaying: false });
+      setTaskName(data.task[0].name);
+      setTesterName(data.name);
+      setKPIID(data.KPI.id);
     },
     setVolume: (volume: number) => set({ volume }),
     setIsPlaying: (isPlaying: boolean) => {

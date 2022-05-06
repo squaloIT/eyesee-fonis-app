@@ -6,9 +6,11 @@ import {
   AccordionItem,
   AccordionPanel,
   Button,
+  IconButton,
   Image,
 } from "@chakra-ui/react";
 import logo from "../../assets/images/logo.png";
+import { getIcon } from "../../lib/helpers";
 import { useTasks } from "../../lib/hooks";
 import { Task } from "../../lib/types";
 import useVideoStore from "../../store/videoStore";
@@ -51,6 +53,15 @@ const Sidebar = () => {
                         >
                           {tester.name}
                         </Button>
+
+                        <IconButton
+                          variant="link"
+                          color="red.300"
+                          as={getIcon(tester.KPI.emotion)}
+                          width="20px"
+                          height="20px"
+                          aria-label="Emotion"
+                        />
                       </Flex>
                     ))}
                   </AccordionPanel>
