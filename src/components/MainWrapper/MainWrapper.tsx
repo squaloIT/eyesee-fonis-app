@@ -16,6 +16,7 @@ const MainWrapper = () => {
     volume,
     isSliding,
     sliderValue,
+    setIsPlaying,
   } = useVideoStore();
 
   const { kpiID } = useTaskStore();
@@ -69,6 +70,10 @@ const MainWrapper = () => {
     setCurrentTime(e.target.currentTime);
   };
 
+  const handleVideoEnding = (e: any) => {
+    setIsPlaying(false);
+  };
+
   return videoScreen && videoCamera ? (
     <Flex
       direction="column"
@@ -85,6 +90,7 @@ const MainWrapper = () => {
               ref={videoCameraRef}
               onDurationChange={handleOnLoad}
               onTimeUpdate={handleTimeUpdate}
+              onEnded={handleVideoEnding}
             />
           </AspectRatio>
         </Box>
