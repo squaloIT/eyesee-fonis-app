@@ -7,7 +7,13 @@ import useTaskStore from "../../store/taskStore";
 import useVideoStore from "../../store/videoStore";
 
 const MainWrapper = () => {
-  const { videoCamera, videoScreen, isPlaying } = useVideoStore();
+  const {
+    videoCamera,
+    videoScreen,
+    isPlaying,
+    setVideoDuration,
+    setCurrentTime,
+  } = useVideoStore();
   const { kpiID } = useTaskStore();
 
   const videoScreenRef: any = useRef(null);
@@ -34,6 +40,14 @@ const MainWrapper = () => {
     });
   };
 
+  const handleOnLoad = (e: any) => {
+    setVideoDuration(e.target.duration);
+  };
+
+  const handleTimeUpdate = (e: any) => {
+    setCurrentTime(e.target.currentTime);
+  };
+
   return videoScreen && videoCamera ? (
     <Flex
       direction="column"
@@ -45,7 +59,12 @@ const MainWrapper = () => {
       <Flex justify="space-between">
         <Box>
           <AspectRatio ratio={4 / 3} w="750px">
-            <video src={videoCamera} ref={videoCameraRef} />
+            <video
+              src={videoCamera}
+              ref={videoCameraRef}
+              onDurationChange={handleOnLoad}
+              onTimeUpdate={handleTimeUpdate}
+            />
           </AspectRatio>
         </Box>
 

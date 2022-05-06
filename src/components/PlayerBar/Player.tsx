@@ -13,10 +13,12 @@ import {
   MdOutlineReplay10,
   MdOutlineForward10,
 } from "react-icons/md";
+import { formatTime } from "../../lib/helpers";
 import useVideoStore from "../../store/videoStore";
 
 const Player = () => {
-  const { isPlaying, setIsPlaying } = useVideoStore();
+  const { isPlaying, setIsPlaying, currentTime, videoDuration } =
+    useVideoStore();
 
   return (
     <Center flexDirection="column">
@@ -61,7 +63,7 @@ const Player = () => {
 
       <Flex width="100%" alignItems="center" color="white">
         <Box width="10%">
-          <Text fontSize="sm">0:00</Text>
+          <Text fontSize="sm">{formatTime(currentTime)}</Text>
         </Box>
 
         <Box width="80%">
@@ -75,7 +77,7 @@ const Player = () => {
 
         <Box width="10%">
           <Text fontSize="sm" textAlign="right">
-            0:30
+            {formatTime(videoDuration)}
           </Text>
         </Box>
       </Flex>
