@@ -1,41 +1,94 @@
 import { AspectRatio, Box, Center, Flex } from "@chakra-ui/layout";
+import { IconButton } from "@chakra-ui/react";
+import fetcher from "../../api/fetcher";
+import { getIcon } from "../../lib/helpers";
+import useVideoStore from "../../store/videoStore";
 
 const MainWrapper = () => {
-  return (
+  const { videoCamera, videoScreen } = useVideoStore();
+
+  return videoScreen && videoCamera ? (
     <Flex
       direction="column"
       justify="space-between"
       paddingX="50px"
       paddingY="20px"
       height="100%"
-      bg="yellow.300"
     >
       <Flex justify="space-between">
         <Box>
           <AspectRatio ratio={4 / 3} w="750px">
-            <Box bg="yellow.500" />
+            <video src={videoCamera} />
           </AspectRatio>
         </Box>
 
         <Box>
           <AspectRatio ratio={4 / 3} w="750px">
-            <Box bg="yellow.500" width="100%" height="100%" />
+            <video src={videoScreen} />
           </AspectRatio>
         </Box>
       </Flex>
 
-      <Center mt="20px" bg="yellow.500" height="20vh">
+      <Center mt="20px" height="20vh">
         <Flex width="70%" justify="space-between">
-          <Box width="100px" height="100px" bg="green.700" />
-          <Box width="100px" height="100px" bg="green.700" />
-          <Box width="100px" height="100px" bg="green.700" />
-          <Box width="100px" height="100px" bg="green.700" />
-          <Box width="100px" height="100px" bg="green.700" />
-          <Box width="100px" height="100px" bg="green.700" />
+          <IconButton
+            variant="link"
+            cursor="pointer"
+            color="red.300"
+            as={getIcon("happiness")}
+            width="100px"
+            height="100px"
+            aria-label="Happines"
+          />
+          <IconButton
+            variant="link"
+            cursor="pointer"
+            color="red.300"
+            as={getIcon("sad")}
+            width="100px"
+            height="100px"
+            aria-label="Sad"
+          />
+          <IconButton
+            variant="link"
+            cursor="pointer"
+            color="red.300"
+            as={getIcon("neutral")}
+            width="100px"
+            height="100px"
+            aria-label="Neutral"
+          />
+          <IconButton
+            variant="link"
+            cursor="pointer"
+            color="red.300"
+            as={getIcon("suprised")}
+            width="100px"
+            height="100px"
+            aria-label="Suprised"
+          />
+          <IconButton
+            variant="link"
+            cursor="pointer"
+            color="red.300"
+            as={getIcon("love")}
+            width="100px"
+            height="100px"
+            aria-label="Love"
+          />
+          <IconButton
+            variant="link"
+            cursor="pointer"
+            color="red.300"
+            as={getIcon("angry")}
+            width="100px"
+            height="100px"
+            aria-label="Angry"
+          />
         </Flex>
       </Center>
     </Flex>
-  );
+  ) : null;
 };
 
 export default MainWrapper;
