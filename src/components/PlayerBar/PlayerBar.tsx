@@ -7,6 +7,7 @@ import {
   SliderTrack,
 } from "@chakra-ui/react";
 import { FiVolume2 } from "react-icons/fi";
+import Player from "./Player";
 
 const PlayerBar = () => {
   return (
@@ -28,7 +29,9 @@ const PlayerBar = () => {
           </Text>
         </Flex>
 
-        <Box width="40%">Player</Box>
+        <Box width="40%">
+          <Player />
+        </Box>
 
         <Box width="12%" pr="30">
           <Flex alignItems="center" gap="2" pr="10">
