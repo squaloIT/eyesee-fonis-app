@@ -14,7 +14,10 @@ const MainWrapper = () => {
     setVideoDuration,
     setCurrentTime,
     volume,
+    isSliding,
+    sliderValue,
   } = useVideoStore();
+
   const { kpiID } = useTaskStore();
 
   const videoScreenRef: any = useRef(null);
@@ -39,6 +42,15 @@ const MainWrapper = () => {
     }
   }, [volume]);
 
+  useEffect(() => {
+    setCurrentTime(sliderValue);
+
+    if (videoScreenRef.current && videoCameraRef.current) {
+      videoScreenRef.current.currentTime = sliderValue;
+      videoCameraRef.current.currentTime = sliderValue;
+    }
+  }, [sliderValue, setCurrentTime]);
+
   const handleEmotionClick = async (emotion: string) => {
     const res = await fetcher("kpi/emotion/save", {
       data: {
@@ -53,6 +65,7 @@ const MainWrapper = () => {
   };
 
   const handleTimeUpdate = (e: any) => {
+    if (isSliding) return;
     setCurrentTime(e.target.currentTime);
   };
 

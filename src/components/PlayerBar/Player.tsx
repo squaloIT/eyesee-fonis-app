@@ -17,8 +17,29 @@ import { formatTime } from "../../lib/helpers";
 import useVideoStore from "../../store/videoStore";
 
 const Player = () => {
-  const { isPlaying, setIsPlaying, currentTime, videoDuration } =
-    useVideoStore();
+  const {
+    isPlaying,
+    setIsPlaying,
+    currentTime,
+    videoDuration,
+    setIsSliding,
+    isSliding,
+    setSliderValue,
+    setCurrentTime,
+  } = useVideoStore();
+
+  const handleOnSliding = (val: number) => {
+    if (!isSliding) {
+      setIsSliding(true);
+    } else {
+      setCurrentTime(val);
+    }
+  };
+
+  const handleOnSlidingEnd = (val: number) => {
+    setIsSliding(false);
+    setSliderValue(val);
+  };
 
   return (
     <Center flexDirection="column">
@@ -67,7 +88,16 @@ const Player = () => {
         </Box>
 
         <Box width="80%">
-          <Slider min={0} max={100} step={0.1} defaultValue={100}>
+          <Slider
+            aria-label="slider-ex-1"
+            defaultValue={0}
+            min={0}
+            max={videoDuration}
+            value={currentTime}
+            step={0.00001}
+            onChangeEnd={handleOnSlidingEnd}
+            onChange={handleOnSliding}
+          >
             <SliderTrack>
               <SliderFilledTrack bg="tomato" />
             </SliderTrack>
