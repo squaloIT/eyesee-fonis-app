@@ -2,6 +2,7 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/layout";
 import Sidebar from "./components/Sidebar/Sidebar";
 import PlayerBar from "./components/PlayerBar/PlayerBar";
+import MainWrapper from "./components/MainWrapper/MainWrapper";
 
 const theme = extendTheme({
   colors: {
@@ -52,7 +53,7 @@ const App = () => {
           marginBottom="100px"
           height="calc(100% - 100px)"
         >
-          MAIN
+          <MainWrapper />
         </Box>
 
         <Box
