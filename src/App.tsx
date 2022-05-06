@@ -1,6 +1,7 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/layout";
 import Sidebar from "./components/Sidebar/Sidebar";
+import PlayerBar from "./components/PlayerBar/PlayerBar";
 
 const theme = extendTheme({
   colors: {
@@ -62,7 +63,7 @@ const App = () => {
           height="100px"
           bg="gray.900"
         >
-          PLAYER BAR
+          <PlayerBar />
         </Box>
       </Box>
     </ChakraProvider>
