@@ -1,13 +1,29 @@
 import { AspectRatio, Box, Center, Flex } from "@chakra-ui/layout";
 import { IconButton } from "@chakra-ui/react";
+import { useEffect, useRef } from "react";
 import fetcher from "../../api/fetcher";
 import { getIcon } from "../../lib/helpers";
 import useTaskStore from "../../store/taskStore";
 import useVideoStore from "../../store/videoStore";
 
 const MainWrapper = () => {
-  const { videoCamera, videoScreen } = useVideoStore();
+  const { videoCamera, videoScreen, isPlaying } = useVideoStore();
   const { kpiID } = useTaskStore();
+
+  const videoScreenRef: any = useRef(null);
+  const videoCameraRef: any = useRef(null);
+
+  useEffect(() => {
+    if (videoScreenRef.current && videoCameraRef.current) {
+      if (isPlaying) {
+        videoScreenRef.current.play();
+        videoCameraRef.current.play();
+      } else {
+        videoScreenRef.current.pause();
+        videoCameraRef.current.pause();
+      }
+    }
+  }, [isPlaying]);
 
   const handleEmotionClick = async (emotion: string) => {
     const res = await fetcher("kpi/emotion/save", {
@@ -29,13 +45,13 @@ const MainWrapper = () => {
       <Flex justify="space-between">
         <Box>
           <AspectRatio ratio={4 / 3} w="750px">
-            <video src={videoCamera} />
+            <video src={videoCamera} ref={videoCameraRef} />
           </AspectRatio>
         </Box>
 
         <Box>
           <AspectRatio ratio={4 / 3} w="750px">
-            <video src={videoScreen} />
+            <video src={videoScreen} ref={videoScreenRef} />
           </AspectRatio>
         </Box>
       </Flex>

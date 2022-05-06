@@ -13,8 +13,11 @@ import {
   MdOutlineReplay10,
   MdOutlineForward10,
 } from "react-icons/md";
+import useVideoStore from "../../store/videoStore";
 
 const Player = () => {
+  const { isPlaying, setIsPlaying } = useVideoStore();
+
   return (
     <Center flexDirection="column">
       <ButtonGroup>
@@ -25,23 +28,28 @@ const Player = () => {
           fontSize="24px"
           icon={<MdOutlineReplay10 />}
         />
-        <IconButton
-          outline="none"
-          variant="link"
-          aria-label="previous"
-          fontSize="40px"
-          color="white"
-          icon={<MdOutlinePauseCircleFilled />}
-        />
-        <IconButton
-          outline="none"
-          variant="link"
-          aria-label="previous"
-          fontSize="40px"
-          color="white"
-          icon={<MdOutlinePlayCircleFilled />}
-        />
-        )
+        {isPlaying ? (
+          <IconButton
+            outline="none"
+            variant="link"
+            aria-label="previous"
+            fontSize="40px"
+            color="white"
+            icon={<MdOutlinePauseCircleFilled />}
+            onClick={() => setIsPlaying(false)}
+          />
+        ) : (
+          <IconButton
+            outline="none"
+            variant="link"
+            aria-label="previous"
+            fontSize="40px"
+            color="white"
+            icon={<MdOutlinePlayCircleFilled />}
+            onClick={() => setIsPlaying(true)}
+          />
+        )}
+
         <IconButton
           outline="none"
           variant="link"
