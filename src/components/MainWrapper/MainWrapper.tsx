@@ -13,6 +13,7 @@ const MainWrapper = () => {
     isPlaying,
     setVideoDuration,
     setCurrentTime,
+    volume,
   } = useVideoStore();
   const { kpiID } = useTaskStore();
 
@@ -30,6 +31,13 @@ const MainWrapper = () => {
       }
     }
   }, [isPlaying]);
+
+  useEffect(() => {
+    if (videoScreenRef.current && videoCameraRef.current) {
+      videoScreenRef.current.volume = volume / 100;
+      videoCameraRef.current.volume = volume / 100;
+    }
+  }, [volume]);
 
   const handleEmotionClick = async (emotion: string) => {
     const res = await fetcher("kpi/emotion/save", {
