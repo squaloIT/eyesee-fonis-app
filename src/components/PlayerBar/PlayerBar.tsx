@@ -7,9 +7,12 @@ import {
   SliderTrack,
 } from "@chakra-ui/react";
 import { FiVolume2 } from "react-icons/fi";
+import useTaskStore from "../../store/taskStore";
 import Player from "./Player";
 
 const PlayerBar = () => {
+  const { taskName, testerName } = useTaskStore();
+
   return (
     <Box height="100px" width="100vw">
       <Flex align="center" justifyContent="space-between" height="100%">
@@ -22,10 +25,10 @@ const PlayerBar = () => {
           justify="space-evenly"
         >
           <Text fontWeight="bold" fontSize="medium">
-            Task 1
+            {taskName}
           </Text>
           <Text fontWeight="bold" fontSize="medium">
-            Tester 1
+            {testerName}
           </Text>
         </Flex>
 
