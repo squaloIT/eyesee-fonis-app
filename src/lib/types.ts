@@ -1,4 +1,4 @@
-type KPI = {
+export type KPI = {
   id: Number;
   emotion: string;
   testerId: number;
@@ -6,7 +6,7 @@ type KPI = {
   updatedAt: String;
 };
 
-type Tester = {
+export type Tester = {
   id: number;
   tester_id: String;
   name: String;
@@ -15,13 +15,13 @@ type Tester = {
   KPI: KPI;
 };
 
-type Task = {
+export type Task = {
   id: number;
   name: String;
   tester: Tester[];
 };
 
-type VideoStoreState = {
+export type VideoStoreState = {
   isPlaying: boolean;
   videoScreen: string;
   videoCamera: string;
@@ -39,7 +39,7 @@ type VideoStoreState = {
   setIsSliding: (isSliding: boolean) => void;
 };
 
-type Video = {
+export type Video = {
   id: number;
   type: string;
   url: string;
@@ -47,12 +47,12 @@ type Video = {
   createdAt: string;
 };
 
-interface VideoBoxInterface {
+export interface VideoBoxInterface {
   src: string;
   type: "camera" | "screen";
 }
 
-type TaskStoreState = {
+export type TaskStoreState = {
   taskName: string;
   kpiID: number;
   testerName: string;
