@@ -1,15 +1,47 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import { ThemeProvider } from "@chakra-ui/react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
+
+const theme = {
+  colors: {
+    gray: {
+      100: "#f5f5f5",
+      200: "#EEEEEE",
+      300: "#E0E0E0",
+      400: "#BDBDBD",
+      500: "#9E9E9E",
+      600: "#757575",
+      700: "#616161",
+      800: "#424242",
+      900: "#212121",
+    },
+  },
+  components: {
+    Button: {
+      variants: {
+        link: {
+          ":focus": {
+            outline: "none",
+            boxShadow: "none",
+          },
+        },
+      },
+    },
+  },
+};
+
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>
 );
 
