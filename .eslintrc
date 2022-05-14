@@ -29,6 +29,7 @@
     "react/prop-types": "off",
     "react/jsx-props-no-spreading": "off",
     "import/prefer-default-export": "off",
+    "object-shorthand": "warn",
     "no-param-reassign": "off",
     "import/extensions": "warn",
     "import/no-unresolved": "warn",
