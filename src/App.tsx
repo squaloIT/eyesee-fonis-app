@@ -1,10 +1,11 @@
 import { Flex, Box } from "@chakra-ui/react";
+import Sidebar from "./components/Sidebar";
 
 const App = () => {
   return (
     <div className="App">
       <Flex height="85vh" className="">
-        <Box bgColor="gray.900" width="15%" />
+        <Sidebar />
         <Box bgColor="yellow" width="85%" />
       </Flex>
 
