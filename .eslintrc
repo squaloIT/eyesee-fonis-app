@@ -23,6 +23,7 @@
     "sourceType": "module",
   },
   "rules": {
+    "react/self-closing-comp": "warn",
     "prefer-template": "off",
     "jsx-a11y/media-has-caption": "off",
     "no-unused-vars": "off",

@@ -1,4 +1,5 @@
 import { Flex, Box } from "@chakra-ui/react";
+import MainWrapper from "./components/MainWrapper";
 import Sidebar from "./components/Sidebar";
 
 const App = () => {
@@ -6,7 +7,10 @@ const App = () => {
     <div className="App">
       <Flex height="85vh" className="">
         <Sidebar />
-        <Box bgColor="yellow" width="85%" />
+
+        <Box width="85%">
+          <MainWrapper />
+        </Box>
       </Flex>
 
       <Flex height="15vh" bgColor="gray.800" />
