@@ -8,12 +8,19 @@ import {
   Image,
 } from "@chakra-ui/react";
 import logo from "../assets/images/logo.png";
+import { fetcher } from "../lib/fetcher";
 import { useTasks } from "../lib/hooks";
 import { Task } from "../lib/types";
+import videoStore from "../store/videoStore";
 
 const Sidebar = () => {
   const { tasks, error, isLoading } = useTasks();
+  const { getVideosForTesterAndSetState } = videoStore();
   console.log(tasks);
+
+  const handleTesterClick = async (id: number) => {
+    getVideosForTesterAndSetState(id);
+  };
 
   return (
     <Box width="15%" bgColor="gray.900">
@@ -37,6 +44,7 @@ const Sidebar = () => {
                     border="none"
                     width="100%"
                     display="block"
+                    cursor="pointer"
                   >
                     <Flex justify="space-between" alignItems="center">
                       <Text margin="0px">{task.name}</Text>
@@ -47,7 +55,13 @@ const Sidebar = () => {
                   <AccordionPanel>
                     <Box px="10px">
                       {task.tester.map((tester) => (
-                        <Text color="white">{tester.name}</Text>
+                        <Text
+                          color="white"
+                          cursor="pointer"
+                          onClick={() => handleTesterClick(tester.id)}
+                        >
+                          {tester.name}
+                        </Text>
                       ))}
                     </Box>
                   </AccordionPanel>

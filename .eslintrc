@@ -23,6 +23,7 @@
     "sourceType": "module",
   },
   "rules": {
+    "prefer-template": "off",
     "jsx-a11y/media-has-caption": "off",
     "no-unused-vars": "off",
     "react/react-in-jsx-scope": "off",
